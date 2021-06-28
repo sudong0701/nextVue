@@ -36,7 +36,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, reactive, getCurrentInstance } from "vue";
+import { defineComponent, ref, reactive, getCurrentInstance, ComponentInternalInstance } from "vue";
 import { NInput, NIcon, useMessage, NMessageProvider } from "naive-ui";
 import { Person, LockClosed, ArrowForwardCircleSharp } from "@vicons/ionicons5";
 import { isEmpty } from '../../utils/common';
@@ -54,6 +54,7 @@ interface loginInfoConfig {
     password: string;
 }
 
+
 export default defineComponent({
     components: {
         NInput,
@@ -64,13 +65,12 @@ export default defineComponent({
         NMessageProvider,
     },
     setup() {
-        const { proxy } = getCurrentInstance();
+        const vueInstance: ComponentInternalInstance | null = getCurrentInstance();
         (window as any).$message = useMessage()
-        const route = useRoute()
         const router = useRouter()
         const loginInfo = reactive<loginInfoConfig>({
-            username: "",
-            password: "",
+            username: "1006364428",
+            password: "514273",
         });
 
         const changeUsername = (e: string) => {
@@ -90,12 +90,12 @@ export default defineComponent({
                 window.$message.error('请输入密码')
                 return
             }
-            proxy.$axios
+            (vueInstance as any).proxy.$axios
                 .post(`http://116.62.141.204:3000/login`, loginInfo)
                 .then((res:any) => {
                     if (res.code === 200) {
                         router.push({
-                            name: 'user'
+                            name: 'userList'
                         })
                     }
                 });
