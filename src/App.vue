@@ -8,12 +8,11 @@
 </template>
 
 <script lang="ts">
-import { useRoute, useRouter } from "vue-router";
+import { useRouter } from "vue-router";
 import { NMessageProvider, NConfigProvider, darkTheme } from "naive-ui";
-import { defineComponent, onMounted } from "vue";
-import { menuOptions } from "./utils/config";
+import { defineComponent } from "vue";
 import { isEmpty } from "./utils/common";
-import { menuItemConfig } from "./utils/config";
+import { routerList, routerConfig } from "./router";
 
 export default defineComponent({
     name: "App",
@@ -29,19 +28,18 @@ export default defineComponent({
                 next({ name: "404" });
             } else {
                 let isMatch: boolean = false;
-                for (let i = 0; i < menuOptions.length; i++) {
-                    if (isEmpty(menuOptions[i].children)) {
-                        if (menuOptions[i].key === to.name) {
-                            isMatch = true;
-                        }
-                    } else {
-                        for ( let j = 0; j < (menuOptions[i].children as Array<menuItemConfig>).length; j++ ) {
-                            if ((menuOptions[i].children as Array<menuItemConfig>)[j].key === to.name) {
+                const matchFuc = (routerList: Array<routerConfig>) => {
+                    for (let i = 0; i < routerList.length; i++) {
+                        if (isEmpty(routerList[i].children)) {
+                            if (routerList[i].name === to.name) {
                                 isMatch = true;
                             }
+                        } else {
+                            matchFuc(routerList[i].children as Array<routerConfig>)
                         }
                     }
-                }
+                };
+                matchFuc(routerList)
                 if (isMatch) {
                     next();
                 } else {
