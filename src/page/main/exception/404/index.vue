@@ -2,7 +2,7 @@
     <div class="page404">
         <n-result status="404" title="404 资源不存在" description="别是一番滋味在心头">
             <template #footer>
-                <n-button @click="goUserList">去用户列表页</n-button>
+                <n-button @click="goIssues">去提个Issues</n-button>
             </template>
         </n-result>
     </div>
@@ -11,7 +11,6 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import { NResult, NButton }  from 'naive-ui'
-import { useRouter }  from 'vue-router'
 
 export default defineComponent({
     components: {
@@ -19,15 +18,11 @@ export default defineComponent({
         NButton
     },
     setup() {
-        const router = useRouter()
-
-        const goUserList = ()=> {
-            router.push({
-                name: 'userList'
-            })
+        const goIssues = ()=> {
+            window.location.href = "https://github.com/sudong0701/nextVue/issues";
         }
         return {
-            goUserList
+            goIssues
         }
     },
 })

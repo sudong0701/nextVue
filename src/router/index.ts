@@ -232,6 +232,11 @@ export const routerList: Array<routerConfig> = [
                 ]
             }
         ]
+    },
+    {
+        path: '/404',
+        name: 'global404',
+        component: page404
     }
 ]
 

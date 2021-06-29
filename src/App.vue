@@ -25,7 +25,7 @@ export default defineComponent({
 
         router.beforeEach((to, from, next) => {
             if (isEmpty(to.name)) {
-                next({ name: "404" });
+                next({ name: "global404" });
             } else {
                 let isMatch: boolean = false;
                 const matchFuc = (routerList: Array<routerConfig>) => {
@@ -43,7 +43,7 @@ export default defineComponent({
                 if (isMatch) {
                     next();
                 } else {
-                    next({ name: "404" });
+                    next({ name: "global404" });
                 }
             }
         });
