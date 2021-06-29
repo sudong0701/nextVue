@@ -5,6 +5,7 @@
     "moduleResolution": "node",
     "strict": true,
     "jsx": "preserve",
+    "noUnusedParameters": false,
     "sourceMap": true,
     "lib": ["esnext", "dom"],
     "plugins": [{ "name": "@vuedx/typescript-plugin-vue" }]
