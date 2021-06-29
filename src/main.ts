@@ -4,7 +4,7 @@ import './index.scss'
 import './assets/css/normalize.scss'
 import { router } from './router'
 import { create, NButton } from 'naive-ui'
-//import axios from 'axios'
+import store from './store'
 
 import { axios } from './utils/axios'
 
@@ -17,6 +17,8 @@ const naive = create({
 app.use(naive)
 
 app.use(router)
+
+app.use(store)
 
 app.mount('#app')
 
