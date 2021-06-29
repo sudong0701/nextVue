@@ -36,11 +36,11 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, reactive, getCurrentInstance, ComponentInternalInstance } from "vue";
+import { defineComponent, reactive, getCurrentInstance, ComponentInternalInstance } from "vue";
 import { NInput, NIcon, useMessage, NMessageProvider } from "naive-ui";
 import { Person, LockClosed, ArrowForwardCircleSharp } from "@vicons/ionicons5";
 import { isEmpty } from '../../utils/common';
-import { useRoute, useRouter } from 'vue-router'
+import { useRouter } from 'vue-router'
 
 declare global {
     interface Window {

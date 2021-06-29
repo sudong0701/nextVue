@@ -2,7 +2,6 @@
 
 
 import { axios } from '@bundled-es-modules/axios'
-import { isEmpty }  from './common'
 import { router }  from '../router'
  
 //设置请求头
