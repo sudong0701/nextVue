@@ -56,7 +56,7 @@
                         <n-popselect :options="popselectOptions" @update:value="logOut">
                             <n-avatar class="main-layout-header-avatar" circle :size="36" :src="avatar" />
                         </n-popselect>
-                        <span class="main-layout-header-welcome">欢迎您，树洞丶</span>
+                        <span class="main-layout-header-welcome">欢迎您，{{username}}</span>
                     </div>
                 </n-layout-header>
                 <n-layout-content class="main-layout-content">
@@ -68,7 +68,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, ref } from "vue";
+import { defineComponent, onMounted, ref, computed, ComputedRef } from "vue";
 import { useRouter, onBeforeRouteUpdate, useRoute } from "vue-router";
 import {
     NAnchor,
@@ -90,6 +90,7 @@ import {
 import { NotificationsOutline, LogoGithub, Expand, Contract } from "@vicons/ionicons5";
 import { menuOptions } from "../../utils/config";
 import avatar from "../../assets/img/page/main/index/avatar.jpg";
+import { useStore } from 'vuex'
 
 const popselectOptions = [
     {
@@ -121,7 +122,8 @@ export default defineComponent({
     },
     setup() {
         const router = useRouter();
-
+        const store = useStore()
+        const username:ComputedRef<string> = computed(()=> store.getters.username)
         const menuValue = ref<string>("");
         const defaultExpandedKeys = ref<string[]>([]);
         const isCollapsed = ref<boolean>(false)
@@ -183,6 +185,7 @@ export default defineComponent({
             logOut,
             goGithub,
             updateMenu,
+            username
         };
     },
 });
