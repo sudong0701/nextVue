@@ -1,4 +1,14 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
+import { ComponentOptions }  from 'vue'
+
+export interface routerConfig {
+    path: string,
+    name: string,
+    component: ComponentOptions,
+    children?: Array<routerConfig>
+}
+
+//page
 
 import login from '../page/sys/login.vue'
 
@@ -42,187 +52,191 @@ import operationRecord from '../page/main/authoritySetting/operationRecord/index
 import setting from '../page/main/setting/index.vue'
 import basicsInfo from '../page/main/setting/basicsInfo/index.vue'
 
+
+
+export const routerList: Array<routerConfig> = [
+    {
+        path: '/',
+        name: 'login',
+        component: login
+    },
+    {
+        path: '/main',
+        name: 'main',
+        component: main,
+        children: [
+            {
+                path: 'list',
+                name: 'list',
+                component: list,
+                children: [
+                    {
+                        path: 'userList',
+                        name: 'userList',
+                        component: userList,
+                    },
+                    {
+                        path: 'searchList',
+                        name: 'searchList',
+                        component: searchList,
+                    },
+                    {
+                        path: 'qyeryTable',
+                        name: 'qyeryTable',
+                        component: qyeryTable,
+                    },
+                    {
+                        path: 'standardList',
+                        name: 'standardList',
+                        component: standardList,
+                    },
+                    {
+                        path: 'cardList',
+                        name: 'cardList',
+                        component: cardList,
+                    }
+                ]
+            },
+            {
+                path: 'form',
+                name: 'form',
+                component: form,
+                children: [
+                    {
+                        path: 'basicsForm',
+                        name: 'basicsForm',
+                        component: basicsForm,
+                    },
+                    {
+                        path: 'distributeForm',
+                        name: 'distributeForm',
+                        component: distributeForm,
+                    },
+                    {
+                        path: 'advancedForm',
+                        name: 'advancedForm',
+                        component: advancedForm,
+                    }
+                ]
+            },
+            {
+                path: 'detail',
+                name: 'detail',
+                component: detail,
+                children: [
+                    {
+                        path: 'basicsDetail',
+                        name: 'basicsDetail',
+                        component: basicsDetail,
+                    },
+                    {
+                        path: 'advancedDetail',
+                        name: 'advancedDetail',
+                        component: advancedDetail,
+                    }
+                ]
+            },
+            {
+                path: 'result',
+                name: 'result',
+                component: result,
+                children: [
+                    {
+                        path: 'success',
+                        name: 'success',
+                        component: success,
+                    },
+                    {
+                        path: 'fail',
+                        name: 'fail',
+                        component: fail,
+                    }
+                ]
+            },
+            {
+                path: 'exception',
+                name: 'exception',
+                component: exception,
+                children: [
+                    {
+                        path: '403',
+                        name: '403',
+                        component: page403,
+                    },
+                    {
+                        path: '404',
+                        name: '404',
+                        component: page404,
+                    },
+                    {
+                        path: '500',
+                        name: '500',
+                        component: page500,
+                    }
+                ]
+            },
+            {
+                path: 'personal',
+                name: 'personal',
+                component: personal,
+                children: [
+                    {
+                        path: 'personalCenter',
+                        name: 'personalCenter',
+                        component: personalCenter,
+                    },
+                    {
+                        path: 'personalSetting',
+                        name: 'personalSetting',
+                        component: personalSetting,
+                    }
+                ]
+            },
+            {
+                path: 'authoritySetting',
+                name: 'authoritySetting',
+                component: authoritySetting,
+                children: [
+                    {
+                        path: 'userManagement',
+                        name: 'userManagement',
+                        component: userManagement,
+                    },
+                    {
+                        path: 'roleManagement',
+                        name: 'roleManagement',
+                        component: roleManagement,
+                    },
+                    {
+                        path: 'appAllocation',
+                        name: 'appAllocation',
+                        component: appAllocation,
+                    },
+                    {
+                        path: 'operationRecord',
+                        name: 'operationRecord',
+                        component: operationRecord,
+                    }
+                ]
+            },
+            {
+                path: 'setting',
+                name: 'setting',
+                component: setting,
+                children: [
+                    {
+                        path: 'basicsInfo',
+                        name: 'basicsInfo',
+                        component: basicsInfo,
+                    }
+                ]
+            }
+        ]
+    }
+]
+
+
 export const router = createRouter({
     history: createWebHashHistory(),
-    routes: [
-        {
-            path: '/',
-            name: 'login',
-            component: login
-        },
-        {
-            path: '/main',
-            name: 'main',
-            component: main,
-            children: [
-                {
-                    path: 'list',
-                    name: 'list',
-                    component: list,
-                    children: [
-                        {
-                            path: 'userList',
-                            name: 'userList',
-                            component: userList,
-                        },
-                        {
-                            path: 'searchList',
-                            name: 'searchList',
-                            component: searchList,
-                        },
-                        {
-                            path: 'qyeryTable',
-                            name: 'qyeryTable',
-                            component: qyeryTable,
-                        },
-                        {
-                            path: 'standardList',
-                            name: 'standardList',
-                            component: standardList,
-                        },
-                        {
-                            path: 'cardList',
-                            name: 'cardList',
-                            component: cardList,
-                        }
-                    ]
-                },
-                {
-                    path: 'form',
-                    name: 'form',
-                    component: form,
-                    children: [
-                        {
-                            path: 'basicsForm',
-                            name: 'basicsForm',
-                            component: basicsForm,
-                        },
-                        {
-                            path: 'distributeForm',
-                            name: 'distributeForm',
-                            component: distributeForm,
-                        },
-                        {
-                            path: 'advancedForm',
-                            name: 'advancedForm',
-                            component: advancedForm,
-                        }
-                    ]
-                },
-                {
-                    path: 'detail',
-                    name: 'detail',
-                    component: detail,
-                    children: [
-                        {
-                            path: 'basicsDetail',
-                            name: 'basicsDetail',
-                            component: basicsDetail,
-                        },
-                        {
-                            path: 'advancedDetail',
-                            name: 'advancedDetail',
-                            component: advancedDetail,
-                        }
-                    ]
-                },
-                {
-                    path: 'result',
-                    name: 'result',
-                    component: result,
-                    children: [
-                        {
-                            path: 'success',
-                            name: 'success',
-                            component: success,
-                        },
-                        {
-                            path: 'fail',
-                            name: 'fail',
-                            component: fail,
-                        }
-                    ]
-                },
-                {
-                    path: 'exception',
-                    name: 'exception',
-                    component: exception,
-                    children: [
-                        {
-                            path: '403',
-                            name: '403',
-                            component: page403,
-                        },
-                        {
-                            path: '404',
-                            name: '404',
-                            component: page404,
-                        },
-                        {
-                            path: '500',
-                            name: '500',
-                            component: page500,
-                        }
-                    ]
-                },
-                {
-                    path: 'personal',
-                    name: 'personal',
-                    component: personal,
-                    children: [
-                        {
-                            path: 'personalCenter',
-                            name: 'personalCenter',
-                            component: personalCenter,
-                        },
-                        {
-                            path: 'personalSetting',
-                            name: 'personalSetting',
-                            component: personalSetting,
-                        }
-                    ]
-                },
-                {
-                    path: 'authoritySetting',
-                    name: 'authoritySetting',
-                    component: authoritySetting,
-                    children: [
-                        {
-                            path: 'userManagement',
-                            name: 'userManagement',
-                            component: userManagement,
-                        },
-                        {
-                            path: 'roleManagement',
-                            name: 'roleManagement',
-                            component: roleManagement,
-                        },
-                        {
-                            path: 'appAllocation',
-                            name: 'appAllocation',
-                            component: appAllocation,
-                        },
-                        {
-                            path: 'operationRecord',
-                            name: 'operationRecord',
-                            component: operationRecord,
-                        }
-                    ]
-                },
-                {
-                    path: 'setting',
-                    name: 'setting',
-                    component: setting,
-                    children: [
-                        {
-                            path: 'basicsInfo',
-                            name: 'basicsInfo',
-                            component: basicsInfo,
-                        }
-                    ]
-                }
-            ]
-
-        }
-    ]
+    routes: routerList
 })
