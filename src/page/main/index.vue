@@ -133,7 +133,6 @@ export default defineComponent({
          * @return
          */
         onBeforeRouteUpdate((to: any, from: any, next: any) => {
-            from
             menuValue.value = to.name;
             next();
         });
