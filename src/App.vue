@@ -24,6 +24,7 @@ export default defineComponent({
         const router = useRouter();
 
         router.beforeEach((to, from, next) => {
+            from
             if (isEmpty(to.name)) {
                 next({ name: "global404" });
             } else {
