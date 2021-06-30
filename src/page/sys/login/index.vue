@@ -41,7 +41,7 @@ import { NInput, NIcon, useMessage, NMessageProvider } from "naive-ui";
 import { Person, LockClosed, ArrowForwardCircleSharp } from "@vicons/ionicons5";
 import { isEmpty } from '../../../utils/common';
 import { useRouter } from 'vue-router'
-import { userInfoConfig } from './data.d'
+import { userInfoConfig } from './data'
 
 interface loginInfoConfig {
     username: string;
@@ -105,11 +105,11 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-@import "../../assets/css/base.scss";
+@import "../../../assets/css/base.scss";
 .login {
     position: relative;
     height: 100%;
-    background: url("../../assets/img/page/sys/login/login_bg.jpg");
+    background: url("../../../assets/img/page/sys/login/login_bg.jpg");
     background-size: cover;
     .login-content {
         display: flex;
