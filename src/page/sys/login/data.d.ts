@@ -1,4 +1,4 @@
-declare interface userInfoConfig {
+export interface userInfoConfig {
 	address: string,
 	age: number,
 	birthday: string,
