@@ -8,7 +8,7 @@
     "noUnusedParameters": false,
     "sourceMap": true,
     "lib": ["esnext", "dom"],
-    "plugins": [{ "name": "@vuedx/typescript-plugin-vue" }]
+    "plugins": []
   },
   "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue", "src/utils/axios.ts", "src/main.ts"]
 }
