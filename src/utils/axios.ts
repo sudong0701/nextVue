@@ -2,7 +2,9 @@
 
 
 import { axios } from '@bundled-es-modules/axios'
-import { router }  from '../router'
+import { router } from '../router'
+
+
  
 //设置请求头
 axios.defaults.headers.post['Content-Type'] = 'application/json'
@@ -34,17 +36,16 @@ axios.interceptors.response.use(
         } else {
             const result = response.data
             if (result.code === 200) {
-                (window as any).$message.success('请求成功')
+                window.$message.success('请求成功')
                 return result
             } else {
-                (window as any).$message.error(result.note)
+                window.$message.error(result.note)
                 router.push('/')
                 return result
             }
         }
     },
     (error: any) => {
-        console.log('error', error)
         if (error.response) {
             return error.response.data
         }
