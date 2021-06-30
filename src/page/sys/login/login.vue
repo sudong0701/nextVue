@@ -39,21 +39,14 @@
 import { defineComponent, reactive, getCurrentInstance, ComponentInternalInstance } from "vue";
 import { NInput, NIcon, useMessage, NMessageProvider } from "naive-ui";
 import { Person, LockClosed, ArrowForwardCircleSharp } from "@vicons/ionicons5";
-import { isEmpty } from '../../utils/common';
+import { isEmpty } from '../../../utils/common';
 import { useRouter } from 'vue-router'
-
-declare global {
-    interface Window {
-        axios: any;
-        $message: any;
-    }
-}
+import { userInfoConfig } from './data.d'
 
 interface loginInfoConfig {
     username: string;
     password: string;
 }
-
 
 export default defineComponent({
     components: {
@@ -66,7 +59,7 @@ export default defineComponent({
     },
     setup() {
         const vueInstance: ComponentInternalInstance | null = getCurrentInstance();
-        (window as any).$message = useMessage()
+        window.$message = useMessage()
         const router = useRouter()
         const loginInfo = reactive<loginInfoConfig>({
             username: "1006364428",
@@ -92,7 +85,7 @@ export default defineComponent({
             }
             (vueInstance as any).proxy.$axios
                 .post(`http://116.62.141.204:3000/login`, loginInfo)
-                .then((res:any) => {
+                .then((res:response<userInfoConfig>) => {
                     if (res.code === 200) {
                         router.push({
                             name: 'userList'

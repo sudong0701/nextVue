@@ -10,7 +10,7 @@ export interface routerConfig {
 
 //page
 
-import login from '../page/sys/login.vue'
+import login from '../page/sys/login/index.vue'
 
 import main from '../page/main/index.vue'
 
