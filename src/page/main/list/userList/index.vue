@@ -1,6 +1,9 @@
 <template>
-    <div>
-        <ml-input v-model:value="inputData.value" @update:value="update" clearable></ml-input>
+    <div class="userList">
+        <div class="searchList">
+            <span>姓名：</span>
+            <ml-input v-model:value="inputData.value" @update:value="update" clearable></ml-input>
+        </div>
         <n-data-table :columns="columns" :data="data" :pagination="pagination" />
     </div>
 </template>
@@ -83,21 +86,21 @@ const createData = (): Array<createDataConfig> => [
         name: "龙少丶",
         age: 27,
         address: "山东省青岛市即墨区",
-        tags: ["酒桶", "程序员"],
+        tags: ["酒桶", "程序员","老板"],
     },
     {
         key: 2,
         name: "林少丶",
         age: 23,
         address: "内蒙古自治区鄂尔多斯市",
-        tags: ["搞笑担当"],
+        tags: ["搞笑担当", "自由职业者"],
     },
     {
         key: 3,
         name: "举少丶",
         age: 24,
         address: "广东省广州市",
-        tags: ["运动大人", "程序员"],
+        tags: ["运动达人", "程序员"],
     },
 ];
 
@@ -138,3 +141,12 @@ export default defineComponent({
     },
 });
 </script>
+
+<style lang="scss" scoped>
+@import "../../../../assets/css/base.scss";
+.userList {
+    .searchList {
+        margin-bottom: $comMg;
+    }
+}
+</style>
