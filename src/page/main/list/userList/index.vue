@@ -1,23 +1,24 @@
 <template>
     <div>
+        <ml-input v-model:value="inputData.value" @update:value="update" clearable></ml-input>
         <n-data-table :columns="columns" :data="data" :pagination="pagination" />
     </div>
 </template>
 
 <script lang="ts">
-import { h, defineComponent } from "vue";
+import { h, defineComponent, ref, reactive } from "vue";
 import { NDataTable, NTag, NButton } from "naive-ui";
-import { useStore } from 'vuex'
+import { useStore } from "vuex";
 
 interface createDataConfig {
-    key: number
-    name: string
-    age: number
-    address: string
-    tags: Array<string>
+    key: number;
+    name: string;
+    age: number;
+    address: string;
+    tags: Array<string>;
 }
 
-const createColumns = ( changeUsername: Function ) => {
+const createColumns = (changeUsername: Function) => {
     return [
         {
             title: "姓名",
@@ -69,7 +70,7 @@ const createColumns = ( changeUsername: Function ) => {
     ];
 };
 
-const createData= ():Array<createDataConfig> => [
+const createData = (): Array<createDataConfig> => [
     {
         key: 0,
         name: "树洞丶",
@@ -107,23 +108,32 @@ export default defineComponent({
         NButton,
     },
     setup() {
-        const store = useStore()
-
+        const store = useStore();
+        const inputData = reactive({ value: "" });
         /**
          * 改变vuex里的username
          * @param
          * @return
          */
-        const changeUsername = (rowData:createDataConfig) => {
-            store.commit('SET_USERNAME', rowData.name )
+        const changeUsername = (rowData: createDataConfig) => {
+            store.commit("SET_USERNAME", rowData.name);
         };
 
         return {
+            inputData,
             data: createData(),
             columns: createColumns(changeUsername),
             pagination: {
-                pageSize: 10,
+                pageSize: 10
             },
+            /**
+             * 输入框值change时触发
+             * @param
+             * @return
+             */
+            update() {
+                
+            }
         };
     },
 });
