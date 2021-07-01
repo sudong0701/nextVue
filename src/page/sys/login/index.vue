@@ -65,15 +65,29 @@ export default defineComponent({
             username: "1006364428",
             password: "514273",
         });
-
+        
+        /**
+         * 用户名输入框值改变时触发
+         * @param
+         * @return
+         */
         const changeUsername = (e: string) => {
             loginInfo.username = e;
         };
 
+        /**
+         * 密码输入框值改变时触发
+         * @param
+         * @return
+         */
         const changePassword = (e: string) => {
             loginInfo.password = e;
         };
-
+        /**
+         * 点击登录按钮时触发
+         * @param
+         * @return
+         */
         const goLogin = () => {
             if(isEmpty(loginInfo.username)) {
                 window.$message.error('请输入用户名')
